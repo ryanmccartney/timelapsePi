@@ -24,7 +24,7 @@ NOTE: `install.sh` is a work in progress, in the meantime run `main.py` to start
 2. Navigate to `http://HOSTNAME.local:8080` or `http://IPADDRESS.local:8080`
 3. Adjust seetings, render and download timelapses.
 
-##Screenshots
+## Screenshots
 
 ![Screenshot of Interface](https://github.com/rmccartney856/timelapsePi/blob/master/media/webScreenshot1.jpg)
 ![Screenshot of Interface](https://github.com/rmccartney856/timelapsePi/blob/master/media/webScreenshot2.jpg)
