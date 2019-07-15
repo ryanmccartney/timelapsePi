@@ -1,0 +1,4 @@
+Date,Time,Type,Entry
+15/07/2019,15:18:21,INFO,Log file cleared
+15/07/2019,15:18:22,INFO,Deleted 0 frames from disk.
+15/07/2019,15:18:22,INFO,Settings saved.

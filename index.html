@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" >
+<head>
+    <title>Timelapse Pi</title>
+    <link rel="icon" type="image/ico" href="public/favicon.ico" sizes="16x16">
+    <link rel="stylesheet" href="public/style.css">
+</head>
+        
+<body onload="getSettings()">
+
+    <img class="logo" src="public/logo.png">
+    <p id="status">When commands are sent, their status is shown here.</p>
+    
+    <h1>Timelapse Pi</h1>
+    
+        <button class="button" onclick="callCommand('startTimelapse')">Start Timelapse</button>
+        <button class="button" onclick="callCommand('stopTimelapse')">Stop Timelapse</button>
+        <button class="button" onclick="callCommand('startRender')">Render Timelapse</button>
+           <form method="get" action="download">
+            <button class="button" type="submit">Download Timelapse</button>
+        </form>
+        <button class="button" onclick="callCommand('clearFrames')">Delete Frames</button>
+        <button class="button" onclick="callCommand('clearLogs')">Clear Logs</button>
+        <form method="get" action="public/log.txt">
+            <button class="button" type="submit">Download Log</button>
+        </form>
+      
+    <h2>Settings</h2>
+        <form id="settingsForm" action="updateSettings">
+            <p>Video FPS: <input type="number" name="fps" min="1" max="50" value="25" ></p>
+            <p>Interval (Seconds): <input type="number" name="interval" min="1" max="86400" value="300"></p>
+            <p>Daily Start Time: <input type="time" name="startTime" value="04:00"></p>
+            <p>Daily End Time: <input type="time" name="endTime" value="20:00"></p>
+            <input class="button" type="submit"  value="Update Settings">
+        </form>
+  
+    <h2>Statistics</h2>
+        <p>CPU Temp: <b id="CPUTemp">0</b>&degC</p>
+        <p>CPU Usage: <b id="CPUUsage">0</b>%</p>
+        <p>Disk Remaining: <b id="diskRemaining">0</b>GB</p>
+        <p>Disk Usage: <b id="diskUsage">0</b>%</p>
+        
+    <h2>Preview</h2>
+        <p>
+            <button class="button" onclick="callCommand('rotate')">Rotate</button>   
+        </p>
+        <p>
+            <img src="getImage" width="500" height="333" id="latestImage">
+        </p>
+
+<script src="public/jquery.min.js"></script>
+<script>
+    
+     $("#settingsForm").submit(function(event) {
+                //Prevent Normal Submission
+                event.preventDefault();
+                //Get Variables
+                var form = $(this);
+                var url = form.attr('action');
+                //AJAX Form Submission to Server
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(),
+                    success: function(status){
+                        //Print Status			
+                        statusElement = document.getElementById('status');
+                        statusElement.innerHTML = status;
+                    }
+                });
+    });
+        
+    function callCommand(command){
+            
+        $.ajax({
+            type: "GET",
+            url: command,
+            datatype: "text",
+            success: function(status) {
+                //Print Status			
+                statusElement = document.getElementById('status');
+                statusElement.innerHTML = status;
+            }
+        });
+        return status;
+    }    
+    
+    function getSettings(){
+            $.ajax({
+            type: "GET",
+            url: "getSettings",
+            datatype: "text",
+            success: function(settingsString) {
+                console.log("Updated Page with Current Settings.")
+                var settings = settingsString.split(",");
+                document.getElementsByName("fps")[0].value = settings[0];
+                document.getElementsByName("interval")[0].value = settings[1];
+                document.getElementsByName("startTime")[0].value = settings[2];
+                document.getElementsByName("endTime")[0].value = settings[3];
+            }});
+    }
+    
+    setInterval(function updateData(){
+         console.log("Updating Page Data");
+         $.ajax({
+            type: "GET",
+            url: "getImage",
+            datatype: "image/jpg",
+            success: function(image) {
+                document.getElementById("latestImage").src = "getImage";
+            }});
+        $.ajax({
+            type: "GET",
+            url: "getCPUTemp",
+            datatype: "text",
+            success: function(temp) {
+                document.getElementById("CPUTemp").innerHTML = temp;
+            }});
+        $.ajax({
+            type: "GET",
+            url: "getCPUUse",
+            datatype: "text",
+            success: function(usage) {
+                document.getElementById("CPUUsage").innerHTML = usage;
+            }});
+        $.ajax({
+            type: "GET",
+            url: "getDiskRemaining",
+            datatype: "text",
+            success: function(diskLeft) {
+                document.getElementById("diskRemaining").innerHTML = diskLeft;
+            }});
+        $.ajax({
+            type: "GET",
+            url: "getDiskUse",
+            datatype: "text",
+            success: function(diskUse) {
+                document.getElementById("diskUsage").innerHTML = diskUse;
+            }});
+        $.ajax({
+            type: "GET",
+            url: "getStatus",
+            datatype: "text",
+            success: function(status) {
+                console.log(status);
+                statusElement = document.getElementById('status');
+                statusElement.innerHTML = status;
+            }});
+    },5000);
+        
+</script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+.logo {
+  padding: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 10%;
+}
+
+.button{
+	border-radius: 8px;
+	padding: 10px;
+	border: 0;
+	color: white;
+	width: 180px;
+	font-size: 1vw;
+	font-family: helvetica, sans-serif;
+	background: #3cd378;
+}
+
+table {
+	font-family: arial, sans-serif;
+	font-size: 0.8vw;
+	border-collapse: collapse;
+	width: 100%;
+  }
+  
+th {
+	border: 1px solid #42d4f4;
+	text-align: left;
+	padding: 6px;
+  }
+
+td {
+	border: 1px solid #3cd378;
+	text-align: left;
+	padding: 4px;
+  }
+  
+code {
+    font-family:monospace,monospace;
+    font-size:1em
+  }
+
+body {
+	width:100%;
+	margin:0 auto;
+	font-family: helvetica, sans-serif;
+	font-size: 1vw;
+	text-align: center;
+}
+
+h1 {
+	font-family: helvetica, sans-serif;
+	width: 100%;
+	font-size: 2vw;
+	color: black;
+	clear: left;
+	text-align: center;
+}
+
+h2 {
+	font-family: helvetica, sans-serif;
+	width: 100%;
+	font-size: 1.6vw;
+	color: black;
+	clear: left;
+	text-align: center;
+}
+
+input{
+	border-radius: 8px;
+	padding: 8px;
+	margin: auto;
+	border:1px solid #3cd378;
+	width:40%;
+	font-size: 1vw;
+	font-family: helvetica, sans-serif;
+}	
+
+paragraph{
+	padding: 10px;
+}
+
+form{
+	display:inline;
+	margin:0px;
+	padding:0px;
+}
