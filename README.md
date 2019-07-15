@@ -8,15 +8,13 @@ Python scripts using PiCamera, OpenCV and CherryPy leveraging the Raspberry Pi t
 * `pip3 install opencv`
 * `pip3 install glob`
 
-## Installation and Run
+## Installation Guide
 
 1. `sudo apt-get update`
 2. `git clone https://github.com/rmccartney856/timelapsePi`
-3.  `cd /PATH/timelapsePi/`
+3. `cd /PATH/timelapsePi/`
 4. `sudo python3 install.py`
 6. `sudo reboot`
-
-NOTE: `install.sh` is a work in progress, in the meantime run `main.py` to start the server.
 
 ## Usage
 
@@ -40,4 +38,4 @@ NOTE: `install.sh` is a work in progress, in the meantime run `main.py` to start
 
 * Start and Stop times determined dynamically based on sunset/sunrise time. Provision of longatude and latitude will be required.
 * Live stream preview window rather than an image updated every 5 seconds.
-* Simplfyied install process.
+* Responsive design
