@@ -13,8 +13,7 @@ Python scripts using PiCamera, OpenCV and CherryPy leveraging the Raspberry Pi t
 1. `sudo apt-get update`
 2. `git clone https://github.com/rmccartney856/timelapsePi`
 3.  `cd /PATH/timelapsePi/`
-4. `chmod +x intsall.sh`
-5. `./install.sh`
+4. `sudo python3 install.py`
 6. `sudo reboot`
 
 NOTE: `install.sh` is a work in progress, in the meantime run `main.py` to start the server.
